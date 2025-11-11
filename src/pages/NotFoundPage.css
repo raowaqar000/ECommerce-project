@@ -1,0 +1,22 @@
+.error-container{
+    position:absolute;
+    top: 50%;
+    left:50%;
+    transform: translate(-50%,-50%);
+    background-color: rgba(8, 79, 45, 0.8);
+    color: white;
+    padding: 24px 72px;
+    border-radius: 28px;
+    box-shadow:  inset 1px 1px 1px 1px rgba(0,0,0,0.5);
+}
+
+.error{
+    font-size: 96px;
+    line-height: 0;
+    font-style: italic;
+}
+.error-page{
+    font-size: 24px;
+    line-height: 0;
+    font-weight: 500;
+}

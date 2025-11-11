@@ -1,9 +1,26 @@
+import { useEffect } from "react";
 import Header from "../components/Header";
 import "./Homepage.css";
 
 function Homepage() {
+   useEffect(() => {
+    document.title = "MyShop";
+    const setFavicon = (url) => {
+      let link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.head.appendChild(link);
+      }
+      link.href = url;
+    };
+    // favicon file placed in public folder; adjust path if located elsewhere
+    setFavicon("/home-favicon.png");
+  }, []);
   return (
     <>
+       <title>Ecommerce Project</title>
+      <link rel="icon" type="image/svg+xml" href="home-favicon.png" />
       <Header />
       <div className="home-page">
         <div className="products-grid">

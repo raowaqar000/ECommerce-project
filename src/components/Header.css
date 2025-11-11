@@ -35,7 +35,17 @@
 }
 
 .header .header-link:hover {
-  border: 1px solid white;
+  /* border: 1px solid white; */
+}
+
+.orders-link.active{
+  padding: 12px;
+  background-color: white;
+  border-radius: 12px;
+}
+
+.orders-link.active .orders-text{
+  color: rgb(8, 79, 45);
 }
 
 .header .logo {
@@ -105,12 +115,16 @@
 
 .header .orders-link {
   color: white;
-
   display: flex;
   align-items: center;
   padding-left: 13px;
   padding-right: 13px;
 }
+
+.header .orders-link .active {
+  text-decoration: underline;
+}
+
 
 .header .orders-text {
   display: block;

@@ -1,7 +1,22 @@
 import "./checkout/checkout.css"
 import "./checkout/CheckoutHeader.css"
 import Checkout from "./checkout/Checkout";
+import { useEffect } from "react";
 function CheckoutPage() {
+   useEffect(() => {
+    document.title = "Cart";
+    const setFavicon = (url) => {
+      let link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.head.appendChild(link);
+      }
+      link.href = url;
+    };
+    // favicon file placed in public folder; adjust path if located elsewhere
+    setFavicon("/cart-favicon.png");
+  }, []);
   return (
     <>
       

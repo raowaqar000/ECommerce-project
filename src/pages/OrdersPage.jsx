@@ -1,8 +1,23 @@
+import { useEffect } from "react";
 import Header from "../components/Header";
-import "./orders.css"
+import "./orders.css";
 function OrdersPage() {
+   useEffect(() => {
+    document.title = "Orders";
+    const setFavicon = (url) => {
+      let link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.head.appendChild(link);
+      }
+      link.href = url;
+    };
+    setFavicon("/orders-favicon.png");
+  }, []);
   return (
     <>
+      
       <Header />
 
       <div className="orders-page">
@@ -37,7 +52,9 @@ function OrdersPage() {
                 <div className="product-name">
                   Black and Gray Athletic Cotton Socks - 6 Pairs
                 </div>
-                <div className="product-delivery-date">Arriving on: August 15</div>
+                <div className="product-delivery-date">
+                  Arriving on: August 15
+                </div>
                 <div className="product-quantity">Quantity: 1</div>
                 <button className="buy-again-button button-primary">
                   <img
@@ -64,7 +81,9 @@ function OrdersPage() {
                 <div className="product-name">
                   Adults Plain Cotton T-Shirt - 2 Pack
                 </div>
-                <div className="product-delivery-date">Arriving on: August 19</div>
+                <div className="product-delivery-date">
+                  Arriving on: August 19
+                </div>
                 <div className="product-quantity">Quantity: 2</div>
                 <button className="buy-again-button button-primary">
                   <img
@@ -111,7 +130,9 @@ function OrdersPage() {
 
               <div className="product-details">
                 <div className="product-name">Intermediate Size Basketball</div>
-                <div className="product-delivery-date">Arriving on: June 17</div>
+                <div className="product-delivery-date">
+                  Arriving on: June 17
+                </div>
                 <div className="product-quantity">Quantity: 2</div>
                 <button className="buy-again-button button-primary">
                   <img

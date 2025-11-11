@@ -1,15 +1,31 @@
+import { useEffect } from "react";
 import Header from "../components/Header";
 import "./tracking.css"
+import { Link } from "react-router";
 function TrackingPage() {
+   useEffect(() => {
+    document.title = "Track your Order";
+    const setFavicon = (url) => {
+      let link = document.querySelector("link[rel~='icon']");
+      if (!link) {
+        link = document.createElement("link");
+        link.rel = "icon";
+        document.head.appendChild(link);
+      }
+      link.href = url;
+    };
+    // favicon file placed in public folder; adjust path if located elsewhere
+    setFavicon("/tracking-favicon.png");
+  }, []);
   return (
     <>
       <Header />
 
       <div className="tracking-page">
         <div className="order-tracking">
-          <a className="back-to-orders-link link-primary" href="/orders">
+          <Link className="back-to-orders-link link-primary" to="/orders">
             View all orders
-          </a>
+          </Link>
 
           <div className="delivery-date">Arriving on Monday, June 13</div>
 
