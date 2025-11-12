@@ -2,7 +2,7 @@ import "./checkout/checkout.css"
 import "./checkout/CheckoutHeader.css"
 import Checkout from "./checkout/Checkout";
 import { useEffect } from "react";
-function CheckoutPage() {
+function CheckoutPage({cart}) {
    useEffect(() => {
     document.title = "Cart";
     const setFavicon = (url) => {

@@ -3,9 +3,8 @@ import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import "./Homepage.css";
 
-function Homepage() {
+function Homepage({cart}) {
   const [products, setProducts] = useState([])
-  const [cart, setCart] = useState([])
 
   useEffect(() => {
     document.title = "MyShop";
@@ -34,12 +33,6 @@ function Homepage() {
       .then((response) => {
         setProducts(response.data)
       })
-
-      axios.get("/api/cart-items")
-      .then((response) => {      
-        setCart(response.data)
-      })
-
   },[])
 
     
