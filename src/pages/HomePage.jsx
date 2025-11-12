@@ -1,10 +1,11 @@
 import axios from "axios"
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import Header from "../components/Header";
 import "./Homepage.css";
-import { products } from "../../project-code/data/products";
 
 function Homepage() {
+  const [products, setProducts] = useState([])
+
   useEffect(() => {
     document.title = "MyShop";
     const setFavicon = (url) => {
@@ -27,12 +28,13 @@ function Homepage() {
 
   // }
   // getProducts()
-
-  axios.get("http://localhost:3000/api/products")
-  .then((response) => {
-    console.log(response.data);
-    
-  });
+  useEffect(() => {
+    axios.get("http://localhost:3000/api/products")
+      .then((response) => {
+        setProducts(response.data)
+      })
+  })
+  
   return (
     <>
       <Header />
