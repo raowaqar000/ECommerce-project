@@ -1,23 +1,31 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
 import Homepage from "./pages/home/HomePage";
-import CheckoutPage from "./pages/CheckoutPage";
-import OrdersPage from "./pages/OrdersPage";
-import TrackingPage from "./pages/TrackingPage";
-import NotFoundPage from "./pages/NotFoundPage";
+import OrdersPage from "./pages/orders/OrdersPage";
+import TrackingPage from "./pages/tracking/TrackingPage";
+import NotFoundPage from "./pages/NotFoundPage/NotFoundPage";
 import { useEffect, useState } from "react";
 import axios from "axios";
+import CheckoutPage from "./pages/checkout/CheckoutPage";
 
 function App() {
     const [cart, setCart] = useState([])
-    useEffect(() => {
-      axios.get("/api/cart-items?expand=product")
-      .then((response) => {    
-        console.log(response.data);
+    // useEffect(() => {
+    //   axios.get("/api/cart-items?expand=product")
+    //   .then((response) => {    
+    //     console.log(response.data);
           
+    //     setCart(response.data)
+    //   })
+    // }, [])
+
+    useEffect(() => {
+      const fetchAppData = async () => {
+        const response = await axios.get("/api/cart-items?expand=product")
         setCart(response.data)
-      })
-    }, [])
+      }
+      fetchAppData()
+    },[])
 
   return (
     <Routes>
