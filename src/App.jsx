@@ -1,6 +1,6 @@
 import { Route, Routes } from "react-router";
 import "./App.css";
-import Homepage from "./pages/HomePage";
+import Homepage from "./pages/home/HomePage";
 import CheckoutPage from "./pages/CheckoutPage";
 import OrdersPage from "./pages/OrdersPage";
 import TrackingPage from "./pages/TrackingPage";

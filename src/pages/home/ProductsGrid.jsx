@@ -1,49 +1,10 @@
-import axios from "axios"
-import { useEffect, useState } from "react";
-import Header from "../components/Header";
-import "./Homepage.css";
-import { formatMoney } from "../utils/money";
+import React from 'react'
+import { formatMoney } from '../../utils/money';
 
-function Homepage({cart}) {
-  const [products, setProducts] = useState([])
-
-  useEffect(() => {
-    document.title = "MyShop";
-    const setFavicon = (url) => {
-      let link = document.querySelector("link[rel~='icon']");
-      if (!link) {
-        link = document.createElement("link");
-        link.rel = "icon";
-        document.head.appendChild(link);
-      }
-      link.href = url;
-    };
-    // favicon file placed in public folder; adjust path if located elsewhere
-    setFavicon("/home-favicon.png");
-  }, []);
-
-  // async function getProducts() {
-  //   const response = await fetch("http://localhost:3000/api/products")
-  //   const data = await response.json()
-  //   console.log(data);
-
-  // }
-  // getProducts()
-  useEffect(() => {
-    axios.get("/api/products")
-      .then((response) => {
-        setProducts(response.data)
-      })
-  },[])
-
-    
-  
+export function ProductsGrid({products}) {
   return (
     <>
-      <Header cart={cart}/>
-
-      <div className="home-page">
-        <div className="products-grid">
+      <div className="products-grid">
           {products.map((product) => {
             return (
               <div key={product.id} className="product-container">
@@ -100,9 +61,6 @@ function Homepage({cart}) {
             );
           })}
         </div>
-      </div>
     </>
-  );
+  )
 }
-
-export default Homepage;

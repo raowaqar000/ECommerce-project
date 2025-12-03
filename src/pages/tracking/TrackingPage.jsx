@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import Header from "../components/Header";
+import Header from "../../components/Header";
 import "./tracking.css"
 import { Link } from "react-router";
 function TrackingPage() {
