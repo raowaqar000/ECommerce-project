@@ -4,19 +4,30 @@ import { useState } from "react";
 
 export function Product({ product, loadCart }) {
   const [quantity, setQuantity] = useState(1);
-  const addToCart = async () => {
-          await axios.post("/api/cart-items", {
-            productId: product.id,
-            quantity
-          });
-          await loadCart();
-        }
+  const [isAdded, setIsAdded] = useState(false);
 
-    const selectQuantity = (e) => {
-            const selectedQuantity = Number(e.target.value);
-            setQuantity(selectedQuantity);
-            console.log(selectedQuantity);
-          }
+  const addToCart = async () => {
+    try {
+      await axios.post("/api/cart-items", {
+        productId: product.id,
+        quantity,
+      });
+      await loadCart();
+      setIsAdded(true);
+      setTimeout(() => setIsAdded(false), 2000);
+    } catch (error) {
+      console.error(
+        "Error adding to cart:",
+        error.response?.data || error.message
+      );
+    }
+  };
+
+  const selectQuantity = (e) => {
+    const selectedQuantity = Number(e.target.value);
+    setQuantity(selectedQuantity);
+    console.log(selectedQuantity);
+  };
   return (
     <div className="product-container">
       <div className="product-image-container">
@@ -57,10 +68,17 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-      <div className="added-to-cart">
-        <img src="images/icons/checkmark.png" />
-        Added
-      </div>
+     {isAdded && (
+  <div className="flex items-center gap-2 px-4 py-2 mb-3 bg-green-500 text-white rounded-md font-semibold animate-slideIn">
+    <img
+      src="/images/icons/checkmark.png"
+      alt="Added"
+      className="w-4 h-4 object-contain shrink-0"
+    />
+    <span className="leading-none">Added</span>
+  </div>
+)}
+
 
       <button
         className="add-to-cart-button button-primary"

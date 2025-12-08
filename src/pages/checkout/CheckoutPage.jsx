@@ -6,7 +6,7 @@ import { formatMoney } from "../../utils/money";
 import axios from "axios";
 import { OrderSummary } from "./OrderSummary";
 import PaymentSummary from "./PaymentSummary";
-function CheckoutPage({ cart }) {
+function CheckoutPage({ cart, loadCart}) {
   useEffect(() => {
     document.title = "Cart";
     const setFavicon = (url) => {
@@ -37,7 +37,7 @@ function CheckoutPage({ cart }) {
       setPaymentSummary(response.data);
     };
     fetchCheckoutData()
-  }, []);
+  }, [cart]);
   return (
     <>
       <Checkout />
@@ -45,7 +45,7 @@ function CheckoutPage({ cart }) {
         <div className="page-title">Review your order</div>
 
         <div className="checkout-grid">
-          <OrderSummary deliveryOptions={deliveryOptions} cart={cart} />
+          <OrderSummary deliveryOptions={deliveryOptions} cart={cart} loadCart={loadCart} />
           <PaymentSummary paymentSummary={paymentSummary} />
         </div>
       </div>
