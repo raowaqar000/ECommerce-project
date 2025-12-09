@@ -13,6 +13,9 @@
   margin-left: auto;
   margin-right: auto;
 }
+.update-text{
+  width: 50px;
+}
 
 .checkout-page .page-title {
   font-weight: 700;
@@ -30,6 +33,13 @@
   /* Use align-items: start; to prevent the elements
      in the grid from stretching vertically. */
   align-items: start;
+}
+
+.quantity-textbox{
+  max-width: 32px;
+  border:none;
+  font-size: 16px;
+  outline:none;
 }
 
 @media (max-width: 1000px) {

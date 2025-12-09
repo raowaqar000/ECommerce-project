@@ -68,17 +68,12 @@ export function Product({ product, loadCart }) {
 
       <div className="product-spacer"></div>
 
-     {isAdded && (
-  <div className="flex items-center gap-2 px-4 py-2 mb-3 bg-green-500 text-white rounded-md font-semibold animate-slideIn">
-    <img
-      src="/images/icons/checkmark.png"
-      alt="Added"
-      className="w-4 h-4 object-contain shrink-0"
-    />
-    <span className="leading-none">Added</span>
-  </div>
-)}
-
+      <div
+        className="added-to-cart"
+        style={{ opacity: isAdded ? 1 : 0 }}
+      >
+        ✓ Added
+      </div>
 
       <button
         className="add-to-cart-button button-primary"

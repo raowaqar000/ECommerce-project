@@ -5,7 +5,7 @@ import axios from "axios";
 import dayjs from "dayjs";
 import { formatMoney } from "../../utils/money";
 import { Link } from "react-router";
-function OrdersPage({ cart }) {
+function OrdersPage({ cart, loadCart }) {
   const [orders, setOrders] = useState([]);
   useEffect(() => {
     document.title = "Orders";
@@ -60,6 +60,17 @@ function OrdersPage({ cart }) {
 
                 <div className="order-details-grid">
                   {order.products.map((orderProduct) => {
+                    const addToCart = async () => {
+                      try {
+                        await axios.post("/api/cart-items", {
+                          productId: orderProduct.product.id,
+                          quantity: 1,
+                        });
+                        await loadCart();
+                      } catch (err) {
+                        console.error("Add to cart failed", err);
+                      }
+                    };
                     return (
                       <Fragment key={orderProduct.product.id}>
                         <div className="product-image-container">
@@ -74,7 +85,10 @@ function OrdersPage({ cart }) {
                             Arriving on: {dayjs(orderProduct.estimatedDeliveryTimeMs).format("MMMM D")}
                           </div>
                           <div className="product-quantity">Quantity: {orderProduct.quantity}</div>
-                          <button className="buy-again-button button-primary">
+                          <button
+                            className="buy-again-button button-primary"
+                            onClick={addToCart}
+                          >
                             <img
                               className="buy-again-icon"
                               src="images/icons/buy-again.png"

@@ -1,6 +1,3 @@
-import React, { useState } from 'react'
-import { formatMoney } from '../../utils/money';
-import axios from 'axios';
 import { Product } from './Product';
 
 export function ProductsGrid({products, loadCart}) {

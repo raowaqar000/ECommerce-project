@@ -17,6 +17,10 @@
   grid-template-columns: repeat(8, 1fr);
 }
 
+.text-primary{
+  color:  rgb(25, 135, 84);
+}
+
 /* @media is used to create responsive design (making the
    website look good on any screen size). This @media
    means when the screen width is 2000px or less, we
