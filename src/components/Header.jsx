@@ -1,14 +1,25 @@
-import { Link, NavLink } from "react-router"
-import "./header.css"
-function Header({cart}) {
+import { Link, NavLink, useNavigate, useSearchParams } from "react-router";
+import "./header.css";
+import { useState } from "react";
+function Header({ cart }) {
+  const [searchParams] = useSearchParams();
+  const [searchQuery, setSearchQuery] = useState(
+    searchParams.get("search") || ""
+  );
+
+  const nevigate = useNavigate();
   let totalQuantity = 0;
 
-  if(cart) {
+  if (cart) {
     cart.forEach((cartItem) => {
-      totalQuantity += cartItem.quantity
-    })
+      totalQuantity += cartItem.quantity;
+    });
   }
 
+  const searchBar = (e) => {
+    e.preventDefault()    
+    nevigate(`/?search=${searchQuery}`);
+  };
 
   return (
     <>
@@ -20,13 +31,19 @@ function Header({cart}) {
           </NavLink>
         </div>
 
-        <div className="middle-section">
-          <input className="search-bar" type="text" placeholder="Search" />
+        <form onSubmit={searchBar} className="middle-section">
+          <input
+            className="search-bar"
+            type="text"
+            placeholder="Search"
+            value={searchQuery}
+            onChange={(e) => setSearchQuery(e.target.value)}
+          />
 
-          <button className="search-button">
+          <button className="search-button" type="submit" >
             <img className="search-icon" src="images/icons/search-icon.png" />
           </button>
-        </div>
+        </form>
 
         <div className="right-section">
           <NavLink className="orders-link header-link" to="/orders">
@@ -41,7 +58,7 @@ function Header({cart}) {
         </div>
       </div>
     </>
-  )
+  );
 }
 
-export default Header
+export default Header;
