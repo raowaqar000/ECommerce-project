@@ -6,6 +6,7 @@ function Header({ cart }) {
   const [searchQuery, setSearchQuery] = useState(
     searchParams.get("search") || ""
   );
+  
 
   const nevigate = useNavigate();
   let totalQuantity = 0;
